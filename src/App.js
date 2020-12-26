@@ -3,19 +3,31 @@ import './App.css';
 import Feed from './Feed';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import Widgets from './Widgets';
+import Login from './Login';
 
 function App() {
+  const [state, dispatch] = useStateValue();
+
   return (
     // BEM naming convention
+
+    // Data layer (REDUX, React Context API)
     <div className="app">
-      <Header />
+      {!user ? (
+        <Login />
+      ): (
+        <>
+        <Header />
       
-      <div className="app__body">
-        <Sidebar />
-        <Feed />
-        {/* Feed */}
-        {/* Widgets */} 
-      </div>      
+        <div className="app__body">
+          <Sidebar />
+          <Feed />
+          <Widgets />
+        </div>
+        </>
+      )}
+      
     </div>
   );
 }
