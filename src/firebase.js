@@ -1,6 +1,6 @@
 import firebase from "firebase";
 
-// 여기에 config 코드 써도 안전!
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyC_i_zqroGAucvf9y1pBI4_zepW35UwQII",
     authDomain: "facebook-clone-26872.firebaseapp.com",
