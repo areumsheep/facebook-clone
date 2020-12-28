@@ -16,13 +16,13 @@ function MessageSender() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // db.collection('posts').add({
-        //     message: input,
-        //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        //     profilePic: user.photoURL,
-        //     username: user.displayName,
-        //     image: imageUrl
-        // })
+        db.collection('posts').add({
+            message: input,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            profilePic: user.photoURL,
+            username: user.displayName,
+            image: imageUrl
+        })
 
         setInput("");
         setImageUrl("");

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Feed.css";
 import MessageSender from './MessageSender';
 import Post from './Post';
@@ -9,23 +9,17 @@ function Feed() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        db.collection("posts").onSnapshot((snapshot) => 
+        db.collection("posts").orderBy("timestamp","desc").onSnapshot((snapshot) => 
             setPosts(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
         );
     }, []);
-
-    // useEffect(() => {
-    //     db.collection("posts").orderBy('timestamp', 'desc').onSnapshot((snapshot) => 
-    //         setPosts(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })))
-    //     );
-    // }, []);
 
     return (
         <div className="feed">
             <StoryReel />
             <MessageSender />
             
-            {/* {posts.map((post) => (
+            {posts.map((post) => (
                 <Post 
                     key={post.id}
                     profilePic={post.data.profilePic}
@@ -34,9 +28,9 @@ function Feed() {
                     username={post.data.username}
                     image={post.data.image}
                 />
-            ))} */}
+            ))}
 
-            <Post 
+            {/* <Post 
                 profilePic="https://miro.medium.com/fit/c/336/336/1*01mcsMzmaEw7nmkD2r2iDg.jpeg"
                 message='WOW this works!'
                 timestamp='This is a timestamp'
@@ -48,7 +42,7 @@ function Feed() {
                 message='WOW this works!'
                 timestamp='This is a timestamp'
                 username='areumsheep'
-            />
+            /> */}
         </div>
     );
 }
